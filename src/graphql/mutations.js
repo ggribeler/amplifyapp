@@ -1,48 +1,183 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createCategory = /* GraphQL */ `
+  mutation CreateCategory(
+    $input: CreateCategoryInput!
+    $condition: ModelCategoryConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
+    createCategory(input: $input, condition: $condition) {
       id
       name
-      description
-      image
+      group
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateCategory = /* GraphQL */ `
+  mutation UpdateCategory(
+    $input: UpdateCategoryInput!
+    $condition: ModelCategoryConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
+    updateCategory(input: $input, condition: $condition) {
       id
       name
-      description
-      image
+      group
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteCategory = /* GraphQL */ `
+  mutation DeleteCategory(
+    $input: DeleteCategoryInput!
+    $condition: ModelCategoryConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteCategory(input: $input, condition: $condition) {
       id
       name
-      description
-      image
+      group
       createdAt
       updatedAt
+      owner
+    }
+  }
+`;
+export const createAccount = /* GraphQL */ `
+  mutation CreateAccount(
+    $input: CreateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    createAccount(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateAccount = /* GraphQL */ `
+  mutation UpdateAccount(
+    $input: UpdateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    updateAccount(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteAccount = /* GraphQL */ `
+  mutation DeleteAccount(
+    $input: DeleteAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    deleteAccount(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const createExpense = /* GraphQL */ `
+  mutation CreateExpense(
+    $input: CreateExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    createExpense(input: $input, condition: $condition) {
+      id
+      description
+      date
+      category {
+        id
+        name
+        group
+        createdAt
+        updatedAt
+        owner
+      }
+      account {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateExpense = /* GraphQL */ `
+  mutation UpdateExpense(
+    $input: UpdateExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    updateExpense(input: $input, condition: $condition) {
+      id
+      description
+      date
+      category {
+        id
+        name
+        group
+        createdAt
+        updatedAt
+        owner
+      }
+      account {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteExpense = /* GraphQL */ `
+  mutation DeleteExpense(
+    $input: DeleteExpenseInput!
+    $condition: ModelExpenseConditionInput
+  ) {
+    deleteExpense(input: $input, condition: $condition) {
+      id
+      description
+      date
+      category {
+        id
+        name
+        group
+        createdAt
+        updatedAt
+        owner
+      }
+      account {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

@@ -1,32 +1,124 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
+export const getCategory = /* GraphQL */ `
+  query GetCategory($id: ID!) {
+    getCategory(id: $id) {
       id
       name
-      description
-      image
+      group
       createdAt
       updatedAt
+      owner
     }
   }
 `;
-export const listTodos = /* GraphQL */ `
-  query ListTodos(
-    $filter: ModelTodoFilterInput
+export const listCategorys = /* GraphQL */ `
+  query ListCategorys(
+    $filter: ModelCategoryFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
-        description
-        image
+        group
         createdAt
         updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getAccount = /* GraphQL */ `
+  query GetAccount($id: ID!) {
+    getAccount(id: $id) {
+      id
+      name
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listAccounts = /* GraphQL */ `
+  query ListAccounts(
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const getExpense = /* GraphQL */ `
+  query GetExpense($id: ID!) {
+    getExpense(id: $id) {
+      id
+      description
+      date
+      category {
+        id
+        name
+        group
+        createdAt
+        updatedAt
+        owner
+      }
+      account {
+        id
+        name
+        createdAt
+        updatedAt
+        owner
+      }
+      value
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listExpenses = /* GraphQL */ `
+  query ListExpenses(
+    $filter: ModelExpenseFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listExpenses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        description
+        date
+        category {
+          id
+          name
+          group
+          createdAt
+          updatedAt
+          owner
+        }
+        account {
+          id
+          name
+          createdAt
+          updatedAt
+          owner
+        }
+        value
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }
