@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import '../App.css';
 import { API } from 'aws-amplify';
-import { listAccounts } from './graphql/queries';
-import { createAccount as createAccountMutation, deleteAccount as deleteAccountMutation } from './graphql/mutations';
+import { listAccounts } from '../graphql/queries';
+import { createAccount as createAccountMutation, deleteAccount as deleteAccountMutation } from '../graphql/mutations';
 
 const initialFormState = { name: ''}
 

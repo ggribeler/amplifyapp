@@ -10,7 +10,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import AccountsContainer from './AccountsContainer';
+import AccountsContainer from './components/AccountsContainer';
+import CategoriesView from './components/CategoriesView';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -59,7 +60,7 @@ function App() {
                 <AccountsContainer />
               </Route>
               <Route path="/categories">
-                <div>Categories</div>
+                <CategoriesView />
               </Route>
               <Route path="/expenses">
                 <div>Expenses</div>
