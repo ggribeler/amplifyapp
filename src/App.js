@@ -1,60 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { API } from 'aws-amplify';
+import React from 'react';
+import 'antd/dist/antd.css';
+import './index.css';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { listAccounts } from './graphql/queries';
-import { createAccount as createAccountMutation, deleteAccount as deleteAccountMutation } from './graphql/mutations';
+import { Layout, Menu } from 'antd';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import AccountsContainer from './AccountsContainer';
 
-const initialFormState = { name: ''}
+
+const { Header, Content, Footer, Sider } = Layout;
+
 
 function App() {
-  const [accounts, setAccounts] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
-
-  useEffect(() => {
-    fetchAccounts();
-  }, []);
-
-  async function fetchAccounts() {
-    const apiData = await API.graphql({ query: listAccounts });
-    const accountsFromAPI = apiData.data.listAccounts.items;
-    setAccounts(accountsFromAPI);
-  }
-
-  async function createAccount() {
-    if (!formData.name) return;
-    await API.graphql({ query: createAccountMutation, variables: { input: formData } });
-    setAccounts([ ...accounts, formData ]);
-    setFormData(initialFormState);
-  }
-
-  async function deleteAccount({ id }) {
-    const newAccountsArray = accounts.filter(account => account.id !== id);
-    setAccounts(newAccountsArray);
-    await API.graphql({ query: deleteAccountMutation, variables: { input: { id } }});
-  }
-
   return (
-    <div className="App">
-      <h1>My Accounts</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Account name"
-        value={formData.name}
-      />
-      <button onClick={createAccount}>Create Account</button>
-      <div style={{marginBottom: 30}}>
-        {
-          accounts.map(account => (
-            <div key={account.id || account.name}>
-              <h2>{account.name}</h2>
-              <button onClick={() => deleteAccount(account)}>Delete Account</button>
-            </div>
-          ))
-        }
-      </div>
-      <AmplifySignOut />
-    </div>
+    <Router>
+      <Layout>
+       <Sider
+         breakpoint="lg"
+         collapsedWidth="0"
+         onBreakpoint={broken => {
+           console.log(broken);
+         }}
+         onCollapse={(collapsed, type) => {
+           console.log(collapsed, type);
+         }}
+       >
+         <div className="logo" />
+         <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+           <Menu.Item key="1" icon={<UserOutlined />}>
+             <Link to="/accounts">
+                Accounts
+             </Link>
+           </Menu.Item>
+           <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+             <Link to="/categories">
+                Categories
+             </Link>
+           </Menu.Item>
+           <Menu.Item key="3" icon={<UploadOutlined />}>
+             <Link to="/expenses">
+                Expenses
+             </Link>
+           </Menu.Item>
+         </Menu>
+         <AmplifySignOut />
+       </Sider>
+       <Layout>
+         <Header className="site-layout-sub-header-background" style={{ padding: 0 }} />
+         <Content style={{ margin: '24px 16px 0' }}>
+           <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+             <Switch>
+              <Route path="/accounts">
+                <AccountsContainer />
+              </Route>
+              <Route path="/categories">
+                <div>Categories</div>
+              </Route>
+              <Route path="/expenses">
+                <div>Expenses</div>
+              </Route>
+            </Switch>
+           </div>
+         </Content>
+         <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+       </Layout>
+     </Layout>
+    </Router>
   );
 }
 
