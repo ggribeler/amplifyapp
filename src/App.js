@@ -10,7 +10,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import AccountsContainer from './components/AccountsContainer';
+import AccountsContainer from './components/AccountsView';
 import CategoriesView from './components/CategoriesView';
 import ExpensesView from './components/ExpensesView';
 
