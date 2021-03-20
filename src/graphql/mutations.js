@@ -9,7 +9,6 @@ export const createCategory = /* GraphQL */ `
     createCategory(input: $input, condition: $condition) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -24,7 +23,6 @@ export const updateCategory = /* GraphQL */ `
     updateCategory(input: $input, condition: $condition) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -39,7 +37,6 @@ export const deleteCategory = /* GraphQL */ `
     deleteCategory(input: $input, condition: $condition) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -54,6 +51,7 @@ export const createAccount = /* GraphQL */ `
     createAccount(input: $input, condition: $condition) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -68,6 +66,7 @@ export const updateAccount = /* GraphQL */ `
     updateAccount(input: $input, condition: $condition) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -82,6 +81,7 @@ export const deleteAccount = /* GraphQL */ `
     deleteAccount(input: $input, condition: $condition) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -100,7 +100,6 @@ export const createExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -108,6 +107,7 @@ export const createExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -131,7 +131,6 @@ export const updateExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -139,6 +138,7 @@ export const updateExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -162,7 +162,6 @@ export const deleteExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -170,6 +169,7 @@ export const deleteExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner

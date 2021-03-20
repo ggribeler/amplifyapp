@@ -1,10 +1,10 @@
 type Category @model @auth(rules: [{ allow: owner }]) {
   name: String!
-  group: String
 }
 
 type Account @model @auth(rules: [{ allow: owner }]) {
   name: String!
+  totalValue: Float!
 }
 
 
@@ -12,7 +12,7 @@ type Expense @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   description: String!
   date: Int!
-  category: Category!
+  category: [Category!]!
   account: Account!
   value: Float!
 }

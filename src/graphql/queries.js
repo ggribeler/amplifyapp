@@ -6,7 +6,6 @@ export const getCategory = /* GraphQL */ `
     getCategory(id: $id) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -23,7 +22,6 @@ export const listCategorys = /* GraphQL */ `
       items {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -37,6 +35,7 @@ export const getAccount = /* GraphQL */ `
     getAccount(id: $id) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -53,6 +52,7 @@ export const listAccounts = /* GraphQL */ `
       items {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -70,7 +70,6 @@ export const getExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -78,6 +77,7 @@ export const getExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -103,7 +103,6 @@ export const listExpenses = /* GraphQL */ `
         category {
           id
           name
-          group
           createdAt
           updatedAt
           owner
@@ -111,6 +110,7 @@ export const listExpenses = /* GraphQL */ `
         account {
           id
           name
+          totalValue
           createdAt
           updatedAt
           owner

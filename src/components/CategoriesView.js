@@ -4,7 +4,7 @@ import { API } from 'aws-amplify';
 import { listCategorys } from '../graphql/queries';
 import { createCategory as createCategoryMutation, deleteCategory as deleteCategoryMutation } from '../graphql/mutations';
 
-const initialFormState = { name: '', group: ''}
+const initialFormState = {name: ''}
 
 const CategoriesContainer = () => {
   const [categories, setCategories] = useState([]);
@@ -41,17 +41,12 @@ const CategoriesContainer = () => {
         placeholder="Category name"
         value={formData.name}
       />
-      <input
-        onChange={e => setFormData({ ...formData, 'group': e.target.value})}
-        placeholder="Category group"
-        value={formData.group}
-      />
       <button onClick={createCategory}>Create Category</button>
       <div style={{marginBottom: 30}}>
         {
           categories.map(category => (
             <div key={category.id || category.name}>
-              <h2>{category.name} {category.group !== '' ? ('(' + category.group + ')') : ''}</h2>
+              <h2>{category.name}</h2>
               <button onClick={() => deleteCategory(category)}>Delete Category</button>
             </div>
           ))

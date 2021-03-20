@@ -6,7 +6,6 @@ export const onCreateCategory = /* GraphQL */ `
     onCreateCategory(owner: $owner) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -18,7 +17,6 @@ export const onUpdateCategory = /* GraphQL */ `
     onUpdateCategory(owner: $owner) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -30,7 +28,6 @@ export const onDeleteCategory = /* GraphQL */ `
     onDeleteCategory(owner: $owner) {
       id
       name
-      group
       createdAt
       updatedAt
       owner
@@ -42,6 +39,7 @@ export const onCreateAccount = /* GraphQL */ `
     onCreateAccount(owner: $owner) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -53,6 +51,7 @@ export const onUpdateAccount = /* GraphQL */ `
     onUpdateAccount(owner: $owner) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -64,6 +63,7 @@ export const onDeleteAccount = /* GraphQL */ `
     onDeleteAccount(owner: $owner) {
       id
       name
+      totalValue
       createdAt
       updatedAt
       owner
@@ -79,7 +79,6 @@ export const onCreateExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -87,6 +86,7 @@ export const onCreateExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -107,7 +107,6 @@ export const onUpdateExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -115,6 +114,7 @@ export const onUpdateExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
@@ -135,7 +135,6 @@ export const onDeleteExpense = /* GraphQL */ `
       category {
         id
         name
-        group
         createdAt
         updatedAt
         owner
@@ -143,6 +142,7 @@ export const onDeleteExpense = /* GraphQL */ `
       account {
         id
         name
+        totalValue
         createdAt
         updatedAt
         owner
