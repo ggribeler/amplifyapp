@@ -9,10 +9,9 @@ type Account @model @auth(rules: [{ allow: owner }]) {
 
 
 type Expense @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
   description: String!
-  date: Int!
-  category: [Category!]!
-  account: Account!
+  date: Float!
+  category: [String!]
+  account: String!
   value: Float!
 }

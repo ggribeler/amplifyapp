@@ -67,21 +67,8 @@ export const getExpense = /* GraphQL */ `
       id
       description
       date
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-        owner
-      }
-      account {
-        id
-        name
-        totalValue
-        createdAt
-        updatedAt
-        owner
-      }
+      category
+      account
       value
       createdAt
       updatedAt
@@ -100,21 +87,8 @@ export const listExpenses = /* GraphQL */ `
         id
         description
         date
-        category {
-          id
-          name
-          createdAt
-          updatedAt
-          owner
-        }
-        account {
-          id
-          name
-          totalValue
-          createdAt
-          updatedAt
-          owner
-        }
+        category
+        account
         value
         createdAt
         updatedAt

@@ -7,7 +7,7 @@ import {
   deleteExpense as deleteExpenseMutation,
 } from "../graphql/mutations";
 import { DatePicker, Space, AutoComplete, InputNumber } from "antd";
-import {parseValue, formatValue} from "../util/FunctionUtils.js"
+import { parseValue, formatValue } from "../util/FunctionUtils.js";
 import moment from "moment";
 
 const initialFormState = {
@@ -37,10 +37,24 @@ const ExpensesContainer = () => {
   }
 
   async function createExpense() {
-    //TODO persist data
-    // if (!formData.description || !formData.date || !formData.account | !formData.category || !formData.value) return;
-    // await API.graphql({ query: createExpenseMutation, variables: { input: formData } });
-    console.log(formData);
+    if (
+      !formData.description ||
+      !formData.date ||
+      !formData.account | !formData.category ||
+      !formData.value
+    )
+      return;
+    var expense = {
+      description: formData.description,
+      date: formData.date,
+      account: formData.account,
+      category: [formData.category],
+      value: formData.value,
+    };
+    await API.graphql({
+      query: createExpenseMutation,
+      variables: { input: expense },
+    });
     setExpenses([...expenses, formData]);
     setFormData(initialFormState);
   }
@@ -56,26 +70,19 @@ const ExpensesContainer = () => {
 
   async function fetchAvailableCategories() {
     const apiData = await API.graphql({ query: listCategorys });
-    // TODO add category group -> maybe change to multiple categories instead of group
-    const availableCategories = apiData.data.listCategorys.items.map(
-      (category) => {
-        return { value: category.name };
-      }
-    );
+    const availableCategories = apiData.data.listCategorys.items;
     setAvailableCategories(availableCategories);
   }
 
   async function fetchAvailableAccounts() {
     const apiData = await API.graphql({ query: listAccounts });
-    const availableAccounts = apiData.data.listAccounts.items.map((account) => {
-      return { value: account.name };
-    });
+    const availableAccounts = apiData.data.listAccounts.items;
     setAvailableAccounts(availableAccounts);
   }
 
   function valueFormatter(value) {
-    const formatted = formatValue(value)
-    setFormData({...formData, 'value': formatted.decimalValue})
+    const formatted = formatValue(value);
+    setFormData({ ...formData, value: formatted.decimalValue });
     return formatted.stringValue;
   }
 
@@ -107,7 +114,9 @@ const ExpensesContainer = () => {
           style={{
             width: 200,
           }}
-          options={availableCategories}
+          options={availableCategories.map((category) => {
+            return { value: category.name };
+          })}
           placeholder="Select category"
           filterOption={(inputValue, option) =>
             option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
@@ -120,7 +129,9 @@ const ExpensesContainer = () => {
           style={{
             width: 200,
           }}
-          options={availableAccounts}
+          options={availableAccounts.map((account) => {
+            return { value: account.name };
+          })}
           placeholder="Select account"
           filterOption={(inputValue, option) =>
             option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1

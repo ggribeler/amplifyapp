@@ -97,21 +97,8 @@ export const createExpense = /* GraphQL */ `
       id
       description
       date
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-        owner
-      }
-      account {
-        id
-        name
-        totalValue
-        createdAt
-        updatedAt
-        owner
-      }
+      category
+      account
       value
       createdAt
       updatedAt
@@ -128,21 +115,8 @@ export const updateExpense = /* GraphQL */ `
       id
       description
       date
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-        owner
-      }
-      account {
-        id
-        name
-        totalValue
-        createdAt
-        updatedAt
-        owner
-      }
+      category
+      account
       value
       createdAt
       updatedAt
@@ -159,21 +133,8 @@ export const deleteExpense = /* GraphQL */ `
       id
       description
       date
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-        owner
-      }
-      account {
-        id
-        name
-        totalValue
-        createdAt
-        updatedAt
-        owner
-      }
+      category
+      account
       value
       createdAt
       updatedAt
