@@ -3,7 +3,7 @@ export function formatValue(value) {
       return "R$ 0,00";
     }
 
-    let decimalValue = (value / 100) * 1.0;
+    let decimalValue = ((value / 100) * 1.0).toFixed(2);
     const formatted = "R$ " + decimalValue.toString().replace('.', ',');
     return {stringValue: formatted, decimalValue};
 

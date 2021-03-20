@@ -24,7 +24,6 @@ const AccountsView = () => {
   async function fetchAccounts() {
     const apiData = await API.graphql({ query: listAccounts });
     const accountsFromAPI = apiData.data.listAccounts.items;
-    console.log(accountsFromAPI);
     setAccounts(accountsFromAPI);
   }
 
