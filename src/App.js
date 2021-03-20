@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import AccountsContainer from './components/AccountsContainer';
 import CategoriesView from './components/CategoriesView';
+import ExpensesView from './components/ExpensesView';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -63,7 +64,10 @@ function App() {
                 <CategoriesView />
               </Route>
               <Route path="/expenses">
-                <div>Expenses</div>
+                <ExpensesView/>
+              </Route>
+              <Route path="/">
+                 Bem vindo ao Poupa Ai!
               </Route>
             </Switch>
            </div>
