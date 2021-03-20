@@ -6,8 +6,12 @@ import {
   createAccount as createAccountMutation,
   deleteAccount as deleteAccountMutation,
 } from "../graphql/mutations";
+import {parseValue, formatValue} from "../util/FunctionUtils.js"
 
-const initialFormState = { name: "" };
+import { Input, InputNumber } from 'antd';
+
+
+const initialFormState = { name: "", totalValue: null };
 
 const AccountsView = () => {
   const [accounts, setAccounts] = useState([]);
@@ -20,12 +24,12 @@ const AccountsView = () => {
   async function fetchAccounts() {
     const apiData = await API.graphql({ query: listAccounts });
     const accountsFromAPI = apiData.data.listAccounts.items;
+    console.log(accountsFromAPI);
     setAccounts(accountsFromAPI);
   }
 
   async function createAccount() {
-    if (!formData.name) 
-      return;
+    if (!formData.name) return;
     await API.graphql({
       query: createAccountMutation,
       variables: { input: formData },
@@ -43,19 +47,40 @@ const AccountsView = () => {
     });
   }
 
+  function valueFormatter(value) {
+    const formatted = formatValue(value)
+    setFormData({...formData, 'totalValue': formatted.decimalValue})
+    return formatted.stringValue;
+  }
+
   return (
     <div className="App">
       <h1>My Accounts</h1>
-      <input
+      <Input
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         placeholder="Account name"
         value={formData.name}
       />
+
+      <InputNumber
+        style={{
+          width: 200,
+        }}
+        placeholder="Value"
+        inputMode="numeric"
+        formatter={(value) =>
+          valueFormatter(value.replace("R$ ", "").replace(",", "."))
+        }
+        defaultValue={"R$ 0,00"}
+        parser={(value) => parseValue(value)}
+      />
+
       <button onClick={createAccount}>Create Account</button>
       <div style={{ marginBottom: 30 }}>
         {accounts.map((account) => (
           <div key={account.id || account.name}>
             <h2>{account.name}</h2>
+            <h2>{account.totalValue}</h2>
             <button onClick={() => deleteAccount(account)}>
               Delete Account
             </button>
